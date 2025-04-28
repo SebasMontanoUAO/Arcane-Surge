@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private void GatherInput()
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
+        input = input.normalized;
     }
 
     private void Look()
