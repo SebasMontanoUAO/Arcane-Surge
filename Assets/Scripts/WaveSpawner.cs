@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
@@ -9,6 +10,7 @@ public class WaveSpawner : MonoBehaviour
     public List<Wave> waves;
     public List<Transform> spawnPointsTransforms;
     public Dictionary<int, Vector3> spawnPoints = new Dictionary<int, Vector3>();
+    public TextMeshProUGUI waveCount;
 
     private int currentWaveIndex = 0;
     //private int enemiesAlive = 0;
@@ -43,7 +45,7 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        waveCount.text = (currentWaveIndex+1).ToString();
     }
 
     IEnumerator NextWave()
