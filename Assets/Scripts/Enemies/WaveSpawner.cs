@@ -13,7 +13,7 @@ public class WaveSpawner : MonoBehaviour
     public TextMeshProUGUI waveCount;
 
     private int currentWaveIndex = 0;
-    //private int enemiesAlive = 0;
+    private int enemiesAlive = 0;
     private bool isSpawning = false;
 
     [Header("Debug")]
@@ -76,5 +76,20 @@ public class WaveSpawner : MonoBehaviour
         Vector3 spawnPos = spawnPoints[randomSpawnPoint];
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        enemy.GetComponent<Enemy>().OnDeath += OnEnemyDied;
+        enemiesAlive++;
+    }
+    private void OnEnemyDied()
+    {
+        enemiesAlive--;
+        // Posible drop de habilidad aquí (20% de chance, por ejemplo)
+        if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
+        {
+            SpawnAbilityPickup();
+        }
+    }
+    private void SpawnAbilityPickup()
+    {
+        Debug.Log("¡Habilidad dropeda!");
     }
 }
