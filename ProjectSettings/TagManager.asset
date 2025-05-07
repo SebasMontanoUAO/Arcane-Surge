@@ -42,6 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Terreno
+    uniqueID: 3534494317
+    locked: 0
+  - name: Particulas
+    uniqueID: 2423859503
+    locked: 0
+  - name: Personajes
+    uniqueID: 854695319
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
