@@ -9,18 +9,18 @@ public abstract class Ability : MonoBehaviour
 
     protected float nextActivationTime = 0f;
 
-    public abstract void Effect(GameObject target = null);
+    public abstract void Effect();
 
     public bool CanActivate()
     {
         return Time.time >= nextActivationTime;
     }
 
-    public void Activate(GameObject target = null)
+    public void Activate()
     {
         if (CanActivate())
         {
-            Effect(target);
+            Effect();
             nextActivationTime = Time.time + cooldown;
         }
     }

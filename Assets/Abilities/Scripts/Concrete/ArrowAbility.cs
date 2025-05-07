@@ -8,7 +8,7 @@ public class ArrowAbility : Ability
     public GameObject arrowPrefab;
     public int damage = 10;
 
-    public override void Effect(GameObject target = null)
+    public override void Effect()
     {
         GameObject nearestEnemy = FindNearestEnemy();
 
@@ -21,8 +21,6 @@ public class ArrowAbility : Ability
             arrow.transform.LookAt(nearestEnemy.transform);
 
             arrow.GetComponent<ArrowProjectile>().SetDamage(damage);
-
-            Debug.Log($"{abilityName} lanzada a {nearestEnemy.name}!");
         }
     }
 
