@@ -2,13 +2,10 @@
 
 public class ArrowProjectile : MonoBehaviour
 {
-    [SerializeField] private float damage;
-    [SerializeField] private float speed = 10f;
+    private int damage;
+    public float arrowSpeed = 10f;
 
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
-    }
+    public void SetDamage(int amount) => damage = amount;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,10 +14,14 @@ public class ArrowProjectile : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamage(damage);
             Destroy(gameObject);
         }
+        else if (!other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * arrowSpeed * Time.deltaTime);
     }
 }

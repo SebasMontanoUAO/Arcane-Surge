@@ -1,30 +1,38 @@
 using System;
 using UnityEngine;
 
-public class AutoArrowAbility : Ability
+public class ArrowAbility : Ability
 {
-    [SerializeField] private GameObject arrowPrefab;
-    [SerializeField] private float damage = 10f;
 
-    protected override void Effect()
+    [Header("Arrow Settings")]
+    public GameObject arrowPrefab;
+    public int damage = 10;
+
+    public override void Effect(GameObject target = null)
     {
-        Enemy nearestEnemy = FindNearestEnemy();
+        GameObject nearestEnemy = FindNearestEnemy();
+
         if (nearestEnemy != null)
         {
             Vector3 direction = (nearestEnemy.transform.position - transform.position).normalized;
+
             GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.LookRotation(direction));
+            
+            arrow.transform.LookAt(nearestEnemy.transform);
+
             arrow.GetComponent<ArrowProjectile>().SetDamage(damage);
+
+            Debug.Log($"{abilityName} lanzada a {nearestEnemy.name}!");
         }
     }
 
-    
-    private Enemy FindNearestEnemy()
+    private GameObject FindNearestEnemy()
     {
-        Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        Enemy nearest = null;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject nearest = null;
         float minDistance = Mathf.Infinity;
 
-        foreach (Enemy enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
             if (distance <= range && distance < minDistance)
@@ -33,13 +41,18 @@ public class AutoArrowAbility : Ability
                 nearest = enemy;
             }
         }
-        Debug.Log(nearest != null ? "Enemigo encontrado" : "No hay enemigos cerca");
         return nearest;
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Activate();
     }
 }
