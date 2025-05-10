@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour
 
     public event Action OnDeath;
 
+    private Rigidbody rb;
+    private bool isPaused = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +30,13 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void SetPaused(bool paused)
+    {
+        isPaused = paused;
+        rb.isKinematic = paused;
+        GetComponent<Animator>().enabled = !paused;
     }
 
     private void Die()

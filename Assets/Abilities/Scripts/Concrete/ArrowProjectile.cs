@@ -14,10 +14,6 @@ public class ArrowProjectile : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamage(damage);
             Destroy(gameObject);
         }
-        else if (!other.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void Update()

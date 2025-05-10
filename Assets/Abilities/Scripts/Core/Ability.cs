@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
 {
+    public event Action<float> OnRangeChanged;
+
     [Header("Base Ability Settings")]
     public float cooldown = 2f;
-    public float range = 5f;
     public string abilityName = "Default Ability";
+    [SerializeField] private float _range;
 
     protected float nextActivationTime = 0f;
 
@@ -22,6 +25,19 @@ public abstract class Ability : MonoBehaviour
         {
             Effect();
             nextActivationTime = Time.time + cooldown;
+            //Debug.Log($"{abilityName} ha sido activada");
+        }
+    }
+    public float Range
+    {
+        get => _range;
+        set
+        {
+            if (_range != value)
+            {
+                _range = value;
+                OnRangeChanged?.Invoke(_range);
+            }
         }
     }
 

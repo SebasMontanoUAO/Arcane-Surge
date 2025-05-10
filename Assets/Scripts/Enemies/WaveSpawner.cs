@@ -15,6 +15,8 @@ public class WaveSpawner : MonoBehaviour
     private int currentWaveIndex = 0;
     private int enemiesAlive = 0;
     private bool isSpawning = false;
+    private bool isPaused = false;
+    private Coroutine currentWaveCoroutine;
 
     [Header("Debug")]
     public bool debugSpawnPoints = true;
@@ -48,6 +50,28 @@ public class WaveSpawner : MonoBehaviour
         waveCount.text = (currentWaveIndex+1).ToString();
     }
 
+    public void PauseSpawning(bool pause)
+    {
+        isPaused = pause;
+
+        if (pause)
+        {
+            // Si está pausando, detener la corrutina actual
+            if (currentWaveCoroutine != null)
+            {
+                StopCoroutine(currentWaveCoroutine);
+            }
+        }
+        else
+        {
+            // Si está reanudando, reiniciar la oleada actual
+            if (!isSpawning && currentWaveIndex < waves.Count)
+            {
+                currentWaveCoroutine = StartCoroutine(NextWave());
+            }
+        }
+    }
+
     IEnumerator NextWave()
     {
         if (currentWaveIndex >= waves.Count) yield break;
@@ -59,15 +83,22 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < wave.enemyCount; i++)
         {
+            if (isPaused)
+            {
+                yield return new WaitWhile(() => isPaused);
+            }
+
             SpawnEnemy(wave.enemyPrefab);
             yield return new WaitForSeconds(wave.spawnInterval);
         }
 
         isSpawning = false;
-        yield return new WaitForSeconds(wave.waveDelay);
-
-        currentWaveIndex++;
-        StartCoroutine(NextWave());
+        if (!isPaused)
+        {
+            yield return new WaitForSeconds(wave.waveDelay);
+            currentWaveIndex++;
+            currentWaveCoroutine = StartCoroutine(NextWave());
+        }
     }
 
     private void SpawnEnemy(GameObject enemyPrefab)

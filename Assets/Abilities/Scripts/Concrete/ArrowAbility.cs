@@ -35,7 +35,7 @@ public class ArrowAbility : Ability
         foreach (GameObject enemy in enemies)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distance <= range && distance < minDistance)
+            if (distance <= Range && distance < minDistance)
             {
                 minDistance = distance;
                 nearest = enemy;
