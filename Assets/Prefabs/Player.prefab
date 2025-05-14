@@ -4751,14 +4751,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4678303127741716419}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7078704fe0fd06c48bfa4d2af4e800a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1.5
-  range: 10
   abilityName: Arrow Ability
+  _range: 10
   arrowPrefab: {fileID: 6208038760408471216, guid: aeefdb14401c5bb4c848d7bf05d1e975, type: 3}
   damage: 10
 --- !u!114 &5938702719458874251
@@ -4773,9 +4773,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae464f1d8a7a234a8f3a52a07001b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 3
-  range: 1
+  cooldown: 2
   abilityName: Aura Ability
+  _range: 3
   damageInterval: 1
   damagePerTick: 5
   auraEffectPrefab: {fileID: 4327298045393845677, guid: 908f007e00cd3944fbd60734362dfec2, type: 3}
