@@ -113,11 +113,6 @@ public class WaveSpawner : MonoBehaviour
     private void OnEnemyDied()
     {
         enemiesAlive--;
-        // Posible drop de habilidad aquí (20% de chance, por ejemplo)
-        if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
-        {
-            SpawnAbilityPickup();
-        }
     }
     private void SpawnAbilityPickup()
     {

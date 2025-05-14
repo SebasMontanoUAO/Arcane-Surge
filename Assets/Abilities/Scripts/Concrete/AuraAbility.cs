@@ -58,10 +58,6 @@ public class AuraAbility : Ability
     void Update()
     {
         Activate();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Range += 1;
-        }
     }
 
     private void UpdateAuraRadius(float newRange)

@@ -4577,7 +4577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5938702719458874251, guid: 36ff5e7b10b759440b27a50d20117f4a, type: 3}
       propertyPath: _range
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5938702719458874251, guid: 36ff5e7b10b759440b27a50d20117f4a, type: 3}
       propertyPath: cooldown
