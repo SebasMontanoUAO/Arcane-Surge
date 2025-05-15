@@ -7,6 +7,7 @@ public class AuraRangeVisual : MonoBehaviour
     public Color color = new Color(1, 0, 0, 0.5f); 
 
     private LineRenderer lineRenderer;
+    private AuraAbility auraAbility;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +21,7 @@ public class AuraRangeVisual : MonoBehaviour
         lineRenderer.endColor = color;
 
         DrawCircle(GetComponent<AuraAbility>().Range);
+        auraAbility = GetComponent<AuraAbility>();
     }
 
     void DrawCircle(float radius)
@@ -32,7 +34,7 @@ public class AuraRangeVisual : MonoBehaviour
             float x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
             float z = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
 
-            lineRenderer.SetPosition(i, new Vector3(x, 0.1f, z));
+            lineRenderer.SetPosition(i, new Vector3(x, -0.8f, z));
             angle += 360f / segments;
         }
     }
@@ -40,6 +42,6 @@ public class AuraRangeVisual : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (auraAbility.isActiveAndEnabled) { this.enabled = true; } else { this.enabled = false; }
     }
 }

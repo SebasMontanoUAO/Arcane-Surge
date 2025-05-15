@@ -18,9 +18,7 @@ public class ArrowAbility : Ability
 
             GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
             
-            arrow.transform.LookAt(nearestEnemy.transform);
-
-            arrow.transform.forward = direction;
+            arrow.transform.rotation = Quaternion.LookRotation(direction);
 
             arrow.GetComponent<ArrowProjectile>().SetDamage(damage);
         }

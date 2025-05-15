@@ -2682,8 +2682,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 130.3265, y: 2.764864e-10}
-  m_SizeDelta: {x: 260.653, y: 75.609}
+  m_AnchoredPosition: {x: 140.2, y: 2.764864e-10}
+  m_SizeDelta: {x: 280.4, y: 75.609}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &588058009
 MonoBehaviour:
@@ -2707,8 +2707,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Oleada:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 235e1fdfb3fb74f4198ec93272db1193, type: 2}
+  m_sharedMaterial: {fileID: -3906820674700053684, guid: 235e1fdfb3fb74f4198ec93272db1193, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3076,7 +3076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 117, y: -2.0215}
+  m_AnchoredPosition: {x: 138.9, y: -0.0000054836}
   m_SizeDelta: {x: 100, y: 71.566}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &735878975
@@ -3103,8 +3103,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 235e1fdfb3fb74f4198ec93272db1193, type: 2}
+  m_sharedMaterial: {fileID: -3906820674700053684, guid: 235e1fdfb3fb74f4198ec93272db1193, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4565,7 +4565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5938702719458874251, guid: 36ff5e7b10b759440b27a50d20117f4a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
