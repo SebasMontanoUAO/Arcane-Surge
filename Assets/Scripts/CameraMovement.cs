@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour
     private Vector3 offset;
     private Vector3 currentVelocity = Vector3.zero;
 
-    private void Awake()
+    private void Start()
     {
         target = Player.Instance.transform;
         offset = transform.position - target.position;

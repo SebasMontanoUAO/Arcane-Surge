@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,10 +19,25 @@ public class Player : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             currentHealth = maxHealth;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ResetPlayerState();
+    }
+
+    private void ResetPlayerState()
+    {
+        GameObject spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
+        if (spawnPoint != null)
+        {
+            transform.position = spawnPoint.transform.position;
         }
     }
 
@@ -30,6 +46,7 @@ public class Player : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
+        
         HealthManager.Instance?.UpdateHealthBar();
 
         if (currentHealth <= 0)
@@ -43,10 +60,4 @@ public class Player : MonoBehaviour
         Debug.Log("Player died!");
     }
 
-    public void Heal(float amount)
-    {
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        HealthManager.Instance?.UpdateHealthBar();
-    }
 }

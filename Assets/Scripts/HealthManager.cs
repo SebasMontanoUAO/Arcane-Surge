@@ -13,17 +13,14 @@ public class HealthManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
+            Instance.healthBarFill = healthBarFill;
+            Instance.UpdateHealthBar();
             Destroy(gameObject);
+            return;
         }
-    }
-
-    private void Start()
-    {
-        UpdateHealthBar();
     }
 
     public void UpdateHealthBar()

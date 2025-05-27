@@ -1,17 +1,24 @@
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class GameData
 {
     public int enemiesKilled;
     public int wavesCleared;
+    public bool keySpawned;
 }
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
+
+    [SerializeField] private int wavesRequiredForKey = 3;
+    [SerializeField] private GameObject keyPrefab;
+    [SerializeField] private Transform keySpawnPosition;
+
     private GameData gameData;
     private string saveFilePath;
 
@@ -34,6 +41,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SpawnKey();
+        }
+    }
     private void InitializeSaveData()
     {
         saveFilePath = Path.Combine(Application.persistentDataPath, "GameSaveData.json");
@@ -76,5 +90,23 @@ public class GameManager : MonoBehaviour
         gameData.wavesCleared++;
         SaveData();
         Debug.Log($"Oleadas completadas: {gameData.wavesCleared}");
+
+        if (gameData.wavesCleared >= wavesRequiredForKey &&
+            !gameData.keySpawned)
+        {
+            SpawnKey();
+            gameData.keySpawned = true;
+            Debug.Log("Spawn Key");
+        }
+    }
+
+    private void SpawnKey()
+    {
+        if (keyPrefab != null)
+        {
+            GameObject key = Instantiate(keyPrefab, keySpawnPosition.position, Quaternion.identity);
+
+            key.AddComponent<KeyCollectible>();
+        }
     }
 }
