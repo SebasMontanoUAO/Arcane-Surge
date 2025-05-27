@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class EnemyFollow : MonoBehaviour
 {
     public NavMeshAgent enemy;
-    private Transform player;
+    private Player player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,6 +15,6 @@ public class EnemyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemy.SetDestination(player.position);
+        enemy.SetDestination(player.transform.position);
     }
 }

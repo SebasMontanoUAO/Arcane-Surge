@@ -14,6 +14,12 @@ public class Enemy : MonoBehaviour
     [Header("Damage Popup")]
     public TextMeshProUGUI damagePopup;
 
+    [Header("Attack Settings")]
+    [SerializeField] private float attackDamage = 5f;
+    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float attackCooldown = 1f;
+    private float lastAttackTime;
+
     public event Action OnDeath;
 
     private Rigidbody rb;
@@ -36,10 +42,23 @@ public class Enemy : MonoBehaviour
         movement = GetComponent<EnemyFollow>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (!isPaused && Player.Instance != null)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, Player.Instance.transform.position);
+
+            if (distanceToPlayer <= attackRange && Time.time > lastAttackTime + attackCooldown)
+            {
+                AttackPlayer();
+                lastAttackTime = Time.time;
+            }
+        }
+    }
+
+    private void AttackPlayer()
+    {
+        Player.Instance?.TakeDamage(attackDamage);
     }
 
     public void TakeDamage(float dmg)
@@ -67,11 +86,13 @@ public class Enemy : MonoBehaviour
         if (meshRenderer != null) meshRenderer.material.color = hitColor;
 
         SetPaused(true);
+        movement.enemy.speed = 0;
 
         yield return new WaitForSeconds(hitStunDuration);
 
         if (meshRenderer != null) meshRenderer.material.color = originalColor;
         SetPaused(false);
+        movement.enemy.speed = 3.5f;
     }
 
     IEnumerator ShowDamagePopup(int damage)

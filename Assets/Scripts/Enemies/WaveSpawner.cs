@@ -97,6 +97,7 @@ public class WaveSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(wave.waveDelay);
             currentWaveIndex++;
+            GameManager.Instance?.WaveCleared();    
             currentWaveCoroutine = StartCoroutine(NextWave());
         }
     }
@@ -113,6 +114,7 @@ public class WaveSpawner : MonoBehaviour
     private void OnEnemyDied()
     {
         enemiesAlive--;
+        GameManager.Instance?.EnemyKilled();
     }
     private void SpawnAbilityPickup()
     {
